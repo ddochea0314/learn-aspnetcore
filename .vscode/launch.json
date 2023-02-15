@@ -44,6 +44,27 @@
                 "/Views": "${workspaceFolder}/Views"
             }
         },
+        
+        {
+            "name": ".NET Core Launch (swagger-3-)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build (swagger-3-explain-examples)",
+            "program": "${workspaceFolder}/src/swagger-2-explain-examples/bin/Debug/net6.0/swagger-2-explain-examples.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/swagger-2-explain-examples",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
         {
             "name": ".NET Core Attach",
             "type": "coreclr",
