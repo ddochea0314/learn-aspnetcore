@@ -1,10 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace swagger_1_comments.Controllers;
+namespace swagger_5_enum.Controllers;
 
-/// <summary>
-/// 날씨 데이터를 제공하는 컨트롤러입니다.
-/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
@@ -16,10 +13,6 @@ public class WeatherForecastController : ControllerBase
 
     private readonly ILogger<WeatherForecastController> _logger;
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="logger"></param>
     public WeatherForecastController(ILogger<WeatherForecastController> logger)
     {
         _logger = logger;
@@ -28,6 +21,8 @@ public class WeatherForecastController : ControllerBase
     /// <summary>
     /// 날씨 데이터를 제공합니다.
     /// </summary>
+    /// <returns></returns>
+
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
@@ -35,7 +30,24 @@ public class WeatherForecastController : ControllerBase
         {
             Date = DateTime.Now.AddDays(index),
             TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            Summary = Enum.Parse<WeatherSummary>(Summaries[Random.Shared.Next(Summaries.Length)])
+        })
+        .ToArray();
+    }
+
+    /// <summary>
+    /// 입력받은 날씨 요약으로 날씨 데이터를 제공합니다.
+    /// </summary>
+    /// <param name="summary"></param>
+    /// <returns></returns>
+    [HttpGet("WeatherSummary", Name = "GetWeatherForecastBySummary")]
+    public IEnumerable<WeatherForecast> Get([FromQuery] WeatherSummary summary)
+    {
+        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        {
+            Date = DateTime.Now.AddDays(index),
+            TemperatureC = Random.Shared.Next(-20, 55),
+            Summary = summary
         })
         .ToArray();
     }
