@@ -34,7 +34,8 @@
 				"ms-dotnettools.csharp",
 				"ms-mssql.mssql",
 				"GitHub.copilot",
-				"k--kato.docomment"
+				"k--kato.docomment",
+				"eamodio.gitlens"
 			]
 		}
 	},
