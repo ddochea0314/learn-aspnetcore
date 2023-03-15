@@ -17,6 +17,7 @@ public class InnerService
 
     public string GetState()
     {
+        _logger.LogInformation("Call State {State}", State);
         return $"State: {State}";
     }
 }

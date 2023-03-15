@@ -5,15 +5,15 @@ public class OuterService
 
     public OuterService(
         ILogger<OuterService> logger,
-        InnerService myService2)
+        InnerService innerService)
     {
         _logger = logger;
-        _innerService = myService2;        
+        _innerService = innerService;        
     }
 
     public void SetInnerService(ServiceState state)
     {
+        _logger.LogInformation("Set innserService State {State}", state);
         _innerService.State = state;
-        _logger.LogInformation(_innerService.GetState());
     }
 }
